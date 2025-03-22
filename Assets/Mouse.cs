@@ -17,6 +17,7 @@ public class Mouse : MonoBehaviour
 
         // Move the area to the cursor
         transform.position = mousePos;
+        //Debug.Log(mousePos);
     }
 
     void OnTriggerEnter2D(Collider2D other)
