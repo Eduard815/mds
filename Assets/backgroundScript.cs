@@ -14,6 +14,6 @@ public class backgroundScript : MonoBehaviour
     {
         transform.localPosition = transform.parent.position * -0.1f;
         transform.position = new Vector3(transform.position.x,transform.position.y,constantZ);
-        Debug.Log(transform.position);
+        //Debug.Log(transform.position);
     }
 }
