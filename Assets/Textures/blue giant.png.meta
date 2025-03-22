@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      blue giant_0: 8214052269349234703
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

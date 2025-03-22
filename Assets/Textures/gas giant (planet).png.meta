@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      gas giant (planet)_0: 178199375403345270
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
