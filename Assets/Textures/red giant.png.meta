@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      red giant_0: 7954943953787735204
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
