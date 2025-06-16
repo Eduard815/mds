@@ -1,77 +1,132 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.SceneManagement; //to keep thangs going during scenes (see awake function)
 
 public class AudioManager : MonoBehaviour
 {
     [Header("Audio Source")]
-    [SerializeField] AudioSource musicSource; //audio for music
-    [SerializeField] AudioSource soundSource; //audio for sounds
+    [SerializeField] public AudioSource musicSource;
+    [SerializeField] public AudioSource soundSource;
 
     [Header("Audio Clips")]
     public AudioClip eclipse;
     public AudioClip solstice;
     public AudioClip warfare;
+    public AudioClip drift;
+    public AudioClip no_horizon;
     public AudioClip click;
 
-    private AudioClip currentclip; //I wanted the game to play different soundtracks one after another so that no two consecutive soundtracks are the same
-    
     [Header("Sliders")]
-    [SerializeField] Slider musicSlider;
-    [SerializeField] Slider soundSlider;
+    [SerializeField] private Slider musicSlider;
+    [SerializeField] private Slider soundSlider;
 
-    void Start() //the function executes right as the game starts
+    private AudioClip currentclip;
+
+    //happens from the start
+    void Awake() 
     {
-        AudioClip[] v = {eclipse, solstice, warfare};
+        //Audio manager is now saved between scenes with Dontdestroyonload
+        if (FindObjectsOfType<AudioManager>().Length > 1)
+        {
+            Destroy(gameObject);  //if we already have an audio manager, it gets destroyed for ours
+            return;
+        }
+        DontDestroyOnLoad(this.gameObject);  //keeps Audio manager between scenes
+        SceneManager.sceneLoaded += OnSceneLoaded; //on scene loaded, it calls the OnSceneLoaded function
+    }
+
+    //when the game is terminated
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        var allSliders = GameObject.FindObjectsOfType<Slider>(true);
+        foreach (var slider in allSliders)
+        {
+            if (slider.name == "MusicSlider") musicSlider = slider;
+            if (slider.name == "SoundSlider") soundSlider = slider;
+        }
+
+        if (musicSlider == null || soundSlider == null)
+        {
+            return; //debugging
+        }
+        float musicVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
+        float soundVolume = PlayerPrefs.GetFloat("SoundVolume", 1f);
+
+        musicSlider.value = musicVolume;
+        soundSlider.value = soundVolume;
+        musicSource.volume = musicVolume;
+        soundSource.volume = soundVolume;
+
+        musicSlider.onValueChanged.RemoveAllListeners();
+        soundSlider.onValueChanged.RemoveAllListeners();
+
+        //the abilty to change volume by using sliders:
+        musicSlider.onValueChanged.AddListener(SetVolume_Music);
+        soundSlider.onValueChanged.AddListener(SetVolume_Sound);
+
+        //finding every button from the scene
+        Button[] buttons = GameObject.FindObjectsOfType<Button>(true);
+        foreach (Button b in buttons)
+        {
+            b.onClick.AddListener(ClickSound);
+        }
+
+    }
+
+    void Start()
+    {
+        AudioClip[] v = {eclipse, no_horizon, drift, solstice, warfare};
+        musicSource.volume = PlayerPrefs.GetFloat("MusicVolume", 1f);
+        soundSource.volume = PlayerPrefs.GetFloat("SoundVolume", 1f); 
+
         if (!musicSource.playOnAwake)
         {
             currentclip = v[Random.Range(0, v.Length)];
             musicSource.clip = currentclip; //the music file is now handled and played
             musicSource.Play();
         }
-        DontDestroyOnLoad(this.gameObject); //keeps the music playing for all scenes, or at least it should, gameObject refers to AudioManager
-
-        //setting the volume for the sliders so that they represent the exact volume
-        musicSlider.value = musicSource.volume;
-        soundSlider.value = soundSource.volume;
-
-        //setting the volume of the sliders
-        musicSlider.onValueChanged.AddListener(SetVolume_Music);
-        soundSlider.onValueChanged.AddListener(SetVolume_Sound);
-
-        //finding all the buttons and applying the click sound for them
-        Button[] buttons = GameObject.FindObjectsOfType<Button>(); //vector of all buttons
-        foreach (Button b in buttons)
-        {
-            b.onClick.AddListener(ClickSound);
-        }
     }
+
     //update per frame when music doesnt play
     void Update()
     {
         if (!musicSource.isPlaying)
         {
-            AudioClip[] v = {eclipse, solstice, warfare}; 
-            AudioClip newclip = v[Random.Range(0, v.Length)]; //we got a newclip and a currentclip. once the two are different we can finally play the newclip
-            while (currentclip == newclip) newclip = v[Random.Range(0, v.Length)];
-            currentclip = newclip; //and the current clip becomes the new clip
+            AudioClip[] v = {eclipse, no_horizon, drift, solstice, warfare};
+            AudioClip newclip;
+            do
+            {
+                newclip = v[Random.Range(0, v.Length)];
+            } while (newclip == currentclip);
+            currentclip = newclip;
             musicSource.clip = currentclip;
-            musicSource.Play(); 
-        } //the cycle repeats itself while we are playing
+            musicSource.Play(); //the cycle repeats itself while we are playing 
+        } 
     }
-    void ClickSound()
+
+    public void ClickSound()
     {
-        soundSource.PlayOneShot(click); //click that thang, girl
+        soundSource.PlayOneShot(click);
     }
-    
-    //setting the sliders' volume
+
     void SetVolume_Music(float volume)
     {
         musicSource.volume = volume;
+        PlayerPrefs.SetFloat("MusicVolume", volume); //saving volume for next scene
     }
 
     void SetVolume_Sound(float volume)
     {
         soundSource.volume = volume;
+        PlayerPrefs.SetFloat("SoundVolume", volume); //saving volume for next scene
     }
+
+    
 }
