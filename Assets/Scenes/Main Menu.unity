@@ -391,17 +391,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de51a559ef17017419b641b4acf24019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonText: {fileID: 0}
-  normalColor:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  hoverColor:
-    r: 1
-    g: 0.92156863
-    b: 0.015686275
-    a: 1
 --- !u!1 &91949026
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,7 +571,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1281,17 +1270,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de51a559ef17017419b641b4acf24019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonText: {fileID: 0}
-  normalColor:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  hoverColor:
-    r: 1
-    g: 0.92156863
-    b: 0.015686275
-    a: 1
 --- !u!1 &771102419
 GameObject:
   m_ObjectHideFlags: 0
@@ -2150,17 +2128,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de51a559ef17017419b641b4acf24019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonText: {fileID: 0}
-  normalColor:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  hoverColor:
-    r: 1
-    g: 0.92156863
-    b: 0.015686275
-    a: 1
 --- !u!1 &1160875888
 GameObject:
   m_ObjectHideFlags: 0
@@ -2679,6 +2646,8 @@ MonoBehaviour:
   eclipse: {fileID: 8300000, guid: b2cdc19f3e99e3a4e976830b3bf9dad4, type: 3}
   solstice: {fileID: 8300000, guid: 8af669f201d0bfc4d9de4ff4fecfdf90, type: 3}
   warfare: {fileID: 8300000, guid: 0d7f21b8d22cc0b4d9ef0200bf37e87d, type: 3}
+  drift: {fileID: 8300000, guid: e033254a78270dd4b918ad592a64eaa1, type: 3}
+  no_horizon: {fileID: 8300000, guid: e59d154358a21a34880443ad24f37ed2, type: 3}
   click: {fileID: 8300000, guid: 14d7efae5bc15964a885c88aa71179ba, type: 3}
   musicSlider: {fileID: 1192120108}
   soundSlider: {fileID: 787107089}
@@ -3160,8 +3129,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1098.5, y: -471.94}
-  m_SizeDelta: {x: 2196.8, y: 943.88}
+  m_AnchoredPosition: {x: 1032.5, y: -502.13}
+  m_SizeDelta: {x: 2064.7, y: 1004.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1820141220
 MonoBehaviour:
@@ -3560,17 +3529,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de51a559ef17017419b641b4acf24019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonText: {fileID: 0}
-  normalColor:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
-  hoverColor:
-    r: 1
-    g: 0.92156863
-    b: 0.015686275
-    a: 1
 --- !u!1 &1920780618
 GameObject:
   m_ObjectHideFlags: 0
