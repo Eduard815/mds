@@ -42,6 +42,10 @@ public class PoissonSampler : MonoBehaviour
 
     void Start()
     {
+        //generating the galaxy with the seed and saving it between scenes switching
+        Random.InitState(SaveGalaxy.Instance.galaxySeed);
+
+
         GameObject mapGO = GameObject.Find("Map");
 
 

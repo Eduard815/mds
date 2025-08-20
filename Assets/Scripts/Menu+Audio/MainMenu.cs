@@ -5,9 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField] string MapScene = "SampleScene";
     public void NewGame()
     {
-        SceneManager.LoadScene(1);
+        //loading SampleScene (the map scene)
+        //Also calling SaveGalaxy for Galaxy seed generation
+        if (SaveGalaxy.Instance != null) SaveGalaxy.Instance.NewGame();
+        SceneManager.LoadScene(MapScene);
     }
 
     public void QuitGame()
