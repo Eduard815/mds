@@ -1,5 +1,5 @@
 .panel {
-    background-color: rgba(138, 78, 53, 0.67);
+    background-color: rgba(0, 62, 255, 0.77);
     height: 25%;
     width: 20%;
     position: absolute;
@@ -7,6 +7,8 @@
     left: 0;
     right: auto;
     bottom: auto;
+    background-image: url("project://database/Assets/Prefabs/Inv_Background.jpeg?fileID=2800000&guid=06d8ae5e34c8bb149b5b60c20e348a37&type=3#Inv_Background");
+    -unity-background-image-tint-color: rgb(228, 228, 228);
 }
 
 .resource {
@@ -21,6 +23,7 @@
     height: 100%;
     align-self: flex-start;
     background-color: rgba(255, 255, 255, 0);
+    padding-left: 70px;
 }
 
 .amount {
