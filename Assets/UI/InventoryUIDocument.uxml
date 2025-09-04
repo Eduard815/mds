@@ -6,11 +6,11 @@
             <ui:VisualElement name="AmountMetal" class="amount" style="flex-grow: 1;" />
         </ui:VisualElement>
         <ui:VisualElement name="Gas" class="resource" style="flex-grow: 1;">
-            <ui:VisualElement name="LogoGas" class="logo" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Prefabs/gas.png?fileID=-2827147315405241775&amp;guid=a12cb93fc7658ec408b2bf5bcabdf9ae&amp;type=3#gas_0&quot;); -unity-background-scale-mode: scale-to-fit;" />
+            <ui:VisualElement name="LogoGas" class="logo" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Prefabs/gas.png?fileID=-2827147315405241775&amp;guid=a12cb93fc7658ec408b2bf5bcabdf9ae&amp;type=3#gas_0&quot;); -unity-background-scale-mode: scale-to-fit; -unity-background-image-tint-color: rgb(255, 255, 255);" />
             <ui:VisualElement name="AmountGas" class="amount" style="flex-grow: 1;" />
         </ui:VisualElement>
         <ui:VisualElement name="Energy" class="resource" style="flex-grow: 1;">
-            <ui:VisualElement name="LogoEnergy" class="logo" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Prefabs/lighting.png?fileID=-3779678137760624508&amp;guid=71ccf31b4b2797049869646fdeaaceca&amp;type=3#lighting_0&quot;); -unity-background-scale-mode: scale-to-fit;" />
+            <ui:VisualElement name="LogoEnergy" class="logo" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Prefabs/lighting.png?fileID=-3779678137760624508&amp;guid=71ccf31b4b2797049869646fdeaaceca&amp;type=3#lighting_0&quot;); -unity-background-scale-mode: scale-to-fit; -unity-background-image-tint-color: rgb(255, 255, 255);" />
             <ui:VisualElement name="AmountEnergy" class="amount" style="flex-grow: 1;" />
         </ui:VisualElement>
     </ui:VisualElement>
