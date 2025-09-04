@@ -1,0 +1,17 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/InventoryUIuss.uss?fileID=7433441132597879392&amp;guid=ef2792a3943b74d4d9abc21ba9fb3bf2&amp;type=3#InventoryUIuss" />
+    <ui:VisualElement name="Panel" class="panel" style="flex-grow: 1;">
+        <ui:VisualElement name="Metal" class="resource" style="flex-grow: 1;">
+            <ui:VisualElement name="LogoMetal" class="logo" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Prefabs/metal.png?fileID=-262108834630032882&amp;guid=3d8e2f6d14e1c8448ad42561c459df37&amp;type=3#metal_0&quot;); -unity-background-scale-mode: scale-to-fit;" />
+            <ui:VisualElement name="AmountMetal" class="amount" style="flex-grow: 1;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Gas" class="resource" style="flex-grow: 1;">
+            <ui:VisualElement name="LogoGas" class="logo" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Prefabs/gas.png?fileID=-2827147315405241775&amp;guid=a12cb93fc7658ec408b2bf5bcabdf9ae&amp;type=3#gas_0&quot;); -unity-background-scale-mode: scale-to-fit;" />
+            <ui:VisualElement name="AmountGas" class="amount" style="flex-grow: 1;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Energy" class="resource" style="flex-grow: 1;">
+            <ui:VisualElement name="LogoEnergy" class="logo" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Prefabs/lighting.png?fileID=-3779678137760624508&amp;guid=71ccf31b4b2797049869646fdeaaceca&amp;type=3#lighting_0&quot;); -unity-background-scale-mode: scale-to-fit;" />
+            <ui:VisualElement name="AmountEnergy" class="amount" style="flex-grow: 1;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
