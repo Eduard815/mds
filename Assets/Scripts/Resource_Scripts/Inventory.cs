@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    [field: SerializeField] public SerializableDictionary<Resource, int> Resources {get; private set;}
+    [field: SerializeField] public SerializableDictionary<Resource, int> Resources { get; private set; }
 
     public int GetResourceAmount(Resource resource)
     {
@@ -24,8 +24,8 @@ public class Inventory : MonoBehaviour
         }
         else
         {
-            Resources.Add(resource,amount);
+            Resources.Add(resource, amount);
             return amount;
         }
-    }    
+    }
 }

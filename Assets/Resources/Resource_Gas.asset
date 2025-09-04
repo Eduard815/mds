@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f65abcab7eec7741ac8ed8e348579e3, type: 3}
   m_Name: Resource_Gas
   m_EditorClassIdentifier: 
-  <ResourceName>k__BackingField: 
-  <Icon>k__BackingField: {fileID: 0}
-  <Description>k__BackingField: 
+  <ResourceName>k__BackingField: Gas
+  <Icon>k__BackingField: {fileID: -2827147315405241775, guid: a12cb93fc7658ec408b2bf5bcabdf9ae, type: 3}
+  <Description>k__BackingField: it stinks

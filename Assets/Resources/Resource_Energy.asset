@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f65abcab7eec7741ac8ed8e348579e3, type: 3}
   m_Name: Resource_Energy
   m_EditorClassIdentifier: 
-  <ResourceName>k__BackingField: 
-  <Icon>k__BackingField: {fileID: 0}
-  <Description>k__BackingField: 
+  <ResourceName>k__BackingField: Energy
+  <Icon>k__BackingField: {fileID: -3779678137760624508, guid: 71ccf31b4b2797049869646fdeaaceca, type: 3}
+  <Description>k__BackingField: zap-zap

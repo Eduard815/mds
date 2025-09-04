@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Resource_Metal
   m_EditorClassIdentifier: 
   <ResourceName>k__BackingField: Metal
-  <Icon>k__BackingField: {fileID: 0}
+  <Icon>k__BackingField: {fileID: -262108834630032882, guid: 3d8e2f6d14e1c8448ad42561c459df37, type: 3}
   <Description>k__BackingField: Dont punch or you may injury yourself
