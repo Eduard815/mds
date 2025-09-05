@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Mouse : MonoBehaviour
 {
+    public Collider2D otherObject;
     private Camera mainCam;
 
     void Start()
@@ -23,10 +24,12 @@ public class Mouse : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Touched object: " + other.name);
+        otherObject = other;
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
         Debug.Log($"{other.name} exited the cursor area!");
+        otherObject = null;
     }
 }

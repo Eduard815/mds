@@ -7,15 +7,23 @@ public class ShipScript : MonoBehaviour
     public bool isMoving = false;
     public Vector2 destination;
     public GameObject destinationObject;
-    
+
+    //obiectul unde stationeaza acum nava (obiect tip star/blackhole sau muchie)
+    public StarScript currentStar;
+
     void Start()
     {
         
     }
-    
+
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void move()
+    {
+        transform.position = currentStar.transform.position;
     }
 }

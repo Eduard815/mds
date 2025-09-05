@@ -17,8 +17,9 @@ public class PoissonSampler : MonoBehaviour
     float cellSize;
     int gridWidth, gridHeight;
     int starIndex = 0;
-    
 
+    private int idIndex = 0;
+    public List<GameObject> instantiatedStars;
     Vector2 empty = new Vector2(99999f, 99999f);
     int[,] grid;
     List<Vector2> points = new List<Vector2>();
@@ -66,11 +67,11 @@ public class PoissonSampler : MonoBehaviour
         lr.SetPosition(1, new Vector3(b.x, b.y, 0));
         */
         ///////////////////////////////
-        
-        
-        
-        
-        
+
+
+
+
+
         /////////////////////////////// Stea centrala pentru debugging
         /*
         Vector2 pos = new Vector2(0f, 0f);
@@ -78,46 +79,53 @@ public class PoissonSampler : MonoBehaviour
         Debug.Log($"Test star at coordinates {testStar.transform.position}");
         */
         ///////////////////////////////
-        
+
         cellSize = r / Mathf.Sqrt(2);
         gridWidth = Mathf.CeilToInt(areaSize / cellSize) + 1;
         gridHeight = Mathf.CeilToInt(areaSize / cellSize) + 1;
 
         grid = new int[gridHeight, gridWidth];
-        for (int i = 0; i < gridHeight; i++){
-            for (int j = 0; j < gridWidth; j++){
+        for (int i = 0; i < gridHeight; i++)
+        {
+            for (int j = 0; j < gridWidth; j++)
+            {
                 grid[i, j] = -1;
             }
         }
 
         Vector2 firstStar;
-        do{
-            float x = Random.Range(-areaSize/2, areaSize/2);
-            float y = Random.Range(-areaSize/2, areaSize/2);
+        do
+        {
+            float x = Random.Range(-areaSize / 2, areaSize / 2);
+            float y = Random.Range(-areaSize / 2, areaSize / 2);
             firstStar = new Vector2(x, y);
-        } while (firstStar.magnitude >= areaSize/2 || firstStar.magnitude < smallAreaSize/2);
-        
+        } while (firstStar.magnitude >= areaSize / 2 || firstStar.magnitude < smallAreaSize / 2);
+
         Insert(firstStar);
 
-        while (active.Count > 0){
+        while (active.Count > 0)
+        {
             int randomIndex = Random.Range(0, active.Count);
             Vector2 randomActive = active[randomIndex];
 
             bool candidateFound = false;
-            for (int attempt = 0; attempt < k; attempt++){
-                float randomRadius = Random.Range(r, 2*r);
+            for (int attempt = 0; attempt < k; attempt++)
+            {
+                float randomRadius = Random.Range(r, 2 * r);
                 float degrees = Random.Range(0f, 360f);
                 float radians = degrees * Mathf.Deg2Rad;
 
                 Vector2 candidate = randomActive + new Vector2(randomRadius * Mathf.Cos(radians), randomRadius * Mathf.Sin(radians));
-                
-                if (StarValidation(candidate)){
+
+                if (StarValidation(candidate))
+                {
                     Insert(candidate);
                     candidateFound = true;
                     break;
                 }
             }
-            if (!candidateFound){
+            if (!candidateFound)
+            {
                 active.RemoveAt(randomIndex);
             }
         }
@@ -126,24 +134,29 @@ public class PoissonSampler : MonoBehaviour
         /// Debug pentru prima stea
         /// Vector2 star = points[0];
         /// GameObject go = Instantiate(starPrefab, new Vector3(star.x, star.y, 0f), Quaternion.identity, mapGO.transform);
-        
-        
-        foreach (Vector2 star in points){
+
+        foreach (Vector2 star in points)
+        {
             /// Instantiate(starPrefab, star, Quaternion.identity);
-            
+            idIndex = idIndex + 1;
             var starPrefab = RandomStarPrefab();
+
             GameObject go = Instantiate(starPrefab, new Vector3(star.x, star.y, 0f), Quaternion.identity, mapGO.transform);
+            StarScript starComp = go.GetComponent<StarScript>();
+            starComp.id = idIndex;
+            instantiatedStars.Add(go);
             /// go.transform.position = new Vector3(star.x, star.y, 0f);
         }
         Debug.Log(points.Count);
-        
-        
-        
-        
-        
+
+
+
+
+
         int nrEdges = points.Count;
         T = new int[nrEdges];
-        for (int i = 0; i < nrEdges; i++){
+        for (int i = 0; i < nrEdges; i++)
+        {
             T[i] = i;
         }
 
@@ -151,6 +164,10 @@ public class PoissonSampler : MonoBehaviour
         Kruskal();
         CreateEdges();
         AddCycles();
+        StarScript lastStar = instantiatedStars[instantiatedStars.Count-1].GetComponent<StarScript>();
+        ShipScript ship = FindFirstObjectByType<ShipScript>();
+        ship.currentStar = lastStar;
+        ship.move();
         /// Debug.Log($"Muchii create inainte de cicluri: {res.Count}");
     }
 
@@ -367,6 +384,13 @@ public class PoissonSampler : MonoBehaviour
 
             inEdges[(edge.a, edge.b)] = true;
             inEdges[(edge.b, edge.a)] = true;
+
+            StarScript starA = mapGO.transform.GetChild(edge.a).GetComponent<StarScript>();
+            StarScript starB = mapGO.transform.GetChild(edge.b).GetComponent<StarScript>();
+
+            starA.neighbours.Add(starB);
+            
+            starB.neighbours.Add(starA);
 
             Debug.Log($"Edge {edge.a} -> {edge.b} instantiated at {lineObj.transform.position}");
         }
