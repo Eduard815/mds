@@ -126,16 +126,44 @@ public class PoissonSampler : MonoBehaviour
         /// Debug pentru prima stea
         /// Vector2 star = points[0];
         /// GameObject go = Instantiate(starPrefab, new Vector3(star.x, star.y, 0f), Quaternion.identity, mapGO.transform);
-        
-        
-        foreach (Vector2 star in points){
-            /// Instantiate(starPrefab, star, Quaternion.identity);
+
+
+        //every star generation
+        for (int i = 0; i < points.Count; i++)
+        {
+            Vector2 star = points[i];
+
+            GameObject prefab = RandomStarPrefab(); //random prefab
+            StarType starType = PrefabNameToType(prefab.name); //getting the StarType from its name
+            GameObject go = Instantiate(prefab, new Vector3(star.x, star.y, 0f), Quaternion.identity, mapGO.transform);
+
+            //creating star seed (galaxySeed + i)
+            int starSeed = RandomSeed(SaveGalaxy.Instance.galaxySeed, i);
+
+            var StarComponent = go.AddComponent<Star>(); //attaches Star.cs script to every star
+            StarComponent.seed = starSeed;
+            StarComponent.type = PrefabNameToType(prefab.name);
+
+
+            foreach (var col in go.GetComponents<Collider2D>()) Destroy(col);
+            var rigid = go.GetComponent<Rigidbody2D>();
+            if (rigid != null) Destroy(rigid);
             
-            var starPrefab = RandomStarPrefab();
-            GameObject go = Instantiate(starPrefab, new Vector3(star.x, star.y, 0f), Quaternion.identity, mapGO.transform);
-            /// go.transform.position = new Vector3(star.x, star.y, 0f);
+
+            //attaches a CircleCollider on the star in order to be able to click on it
+            var collider = go.AddComponent<CircleCollider2D>();
+            collider.isTrigger = false;
+            collider.offset = Vector2.zero;
+            collider.radius = 1f;
+            /*if (collider == null)
+            {
+                collider = go.AddComponent<CircleCollider2D>();
+            }*/
+
+            
+            
         }
-        Debug.Log(points.Count);
+        //Debug.Log(points.Count);
         
         
         
@@ -152,6 +180,29 @@ public class PoissonSampler : MonoBehaviour
         CreateEdges();
         AddCycles();
         /// Debug.Log($"Muchii create inainte de cicluri: {res.Count}");
+    }
+
+    //Translating starprefab's name to startype
+    static StarType PrefabNameToType(string prefabName)
+    {
+        if (prefabName.EndsWith("(Clone)"))
+        {
+            prefabName = prefabName.Substring(0, prefabName.Length - "(Clone)".Length);
+        }
+        switch (prefabName)
+        {
+            case "redStarPrefab": return StarType.Red;
+            case "yellowStarPrefab": return StarType.Yellow;
+            case "whiteStarPrefab": return StarType.White;
+            case "blueStarPrefab": return StarType.Blue;
+            case "blackHolePrefab": return StarType.BlackHole;
+            default: return StarType.Red;
+        }
+    }
+
+    static int RandomSeed(int a, int b)
+    {
+        return a + b * 50028541;
     }
 
 
@@ -202,9 +253,18 @@ public class PoissonSampler : MonoBehaviour
 
 
     GameObject RandomStarPrefab(){
-        float rand = Random.value;
-        for (int i = 0; i < starPrefabs.Length; i++){
-            if (rand < starProb[i]){
+        float total = 0f;
+        for (int i = 0; i < starProb.Length; i++)
+        {
+            total += starProb[i];
+        }
+        float rand = Random.value * total;
+        float x = 0f;
+        for (int i = 0; i < starPrefabs.Length; i++)
+        {
+            x += starProb[i];
+            if (rand < x)
+            {
                 return starPrefabs[i];
             }
         }
@@ -368,7 +428,7 @@ public class PoissonSampler : MonoBehaviour
             inEdges[(edge.a, edge.b)] = true;
             inEdges[(edge.b, edge.a)] = true;
 
-            Debug.Log($"Edge {edge.a} -> {edge.b} instantiated at {lineObj.transform.position}");
+            //Debug.Log($"Edge {edge.a} -> {edge.b} instantiated at {lineObj.transform.position}");
         }
     }
 
