@@ -34,6 +34,5 @@ public class Mouse : MonoBehaviour
             otherObject = null;
         }
         Debug.Log($"{other.name} exited the cursor area!");
-        
     }
 }
