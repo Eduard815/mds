@@ -13,7 +13,8 @@ public class ShipScript : MonoBehaviour
     public int dist = 2;
 
     //obiectul unde stationeaza acum nava (obiect tip star/blackhole sau muchie)
-    public StarScript currentStar;
+    public StarScript currentStar = null;
+    public StarScript targetStar = null;
 
     void Start()
     {
@@ -30,6 +31,7 @@ public class ShipScript : MonoBehaviour
     {
         if (dist != 0)
         {
+            currentStar = targetStar;
             transform.position = currentStar.transform.position;
             dist -= 1;
         }
