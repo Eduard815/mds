@@ -4,9 +4,13 @@ public class ShipScript : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public float speed;
+    public int health = 100;
+    public int power = 10;
     public bool isMoving = false;
     public Vector2 destination;
     public GameObject destinationObject;
+    public int maxDist = 2;
+    public int dist = 2;
 
     //obiectul unde stationeaza acum nava (obiect tip star/blackhole sau muchie)
     public StarScript currentStar;
@@ -24,6 +28,10 @@ public class ShipScript : MonoBehaviour
 
     public void move()
     {
-        transform.position = currentStar.transform.position;
+        if (dist != 0)
+        {
+            transform.position = currentStar.transform.position;
+            dist -= 1;
+        }
     }
 }

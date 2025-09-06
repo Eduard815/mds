@@ -8,10 +8,12 @@ public class InputsLogic : MonoBehaviour
     public GameObject UI_starinfo;
     private TMP_Text UI_metalamount;
 
+    public int turn;
     private bool mouseDown = false;
     private GameObject selected = null;
     void Start()
     {
+        turn = 1;
         UI_metalamount = UI_starinfo.transform.Find("metalAmount").GetComponent<TMP_Text>();
     }
 
@@ -23,15 +25,35 @@ public class InputsLogic : MonoBehaviour
             mouseDown = true;
             var clickedObj = mouseScript.otherObject.gameObject;
             ShipScript ship = selected.GetComponent<ShipScript>();
-            StarScript star = clickedObj.GetComponent<StarScript>();
-            if (star != null && ship != null)
+            StarScript clickedStar = clickedObj.GetComponent<StarScript>();
+            ShipScript clickedShip = clickedObj.GetComponent<ShipScript>();
+            if (clickedStar != null && ship != null)
             {
-                if (ship.currentStar.neighbours.Contains(star))
+                if (ship.currentStar.neighbours.Contains(clickedStar))
                 {
-                    ship.currentStar = star;
+                    ship.currentStar = clickedStar;
                     ship.move();
                 }
 
+            }
+            else if (clickedShip != null && ship != null)
+            {
+                if (ship.health - clickedShip.power <= 0)
+                {
+                    ship.health = 0;
+                }
+                else
+                {
+                    ship.health -= clickedShip.power;
+                    if (clickedShip.health - ship.power <= 0)
+                    {
+                        clickedShip.health = 0;
+                    }
+                    else
+                    {
+                        clickedShip.health -= ship.power;
+                    }
+                }
             }
         }
         else if (!Input.GetMouseButtonDown(1) && mouseDown) mouseDown = false;
