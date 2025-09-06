@@ -31,7 +31,7 @@ public class InputsLogic : MonoBehaviour
             {
                 if (ship.currentStar.neighbours.Contains(clickedStar))
                 {
-                    ship.currentStar = clickedStar;
+                    ship.targetStar = clickedStar;
                     ship.move();
                 }
 
