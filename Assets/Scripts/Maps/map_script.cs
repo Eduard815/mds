@@ -135,6 +135,7 @@ public class PoissonSampler : MonoBehaviour
         /// Vector2 star = points[0];
         /// GameObject go = Instantiate(starPrefab, new Vector3(star.x, star.y, 0f), Quaternion.identity, mapGO.transform);
 
+
         foreach (Vector2 star in points)
         {
             /// Instantiate(starPrefab, star, Quaternion.identity);
@@ -170,6 +171,29 @@ public class PoissonSampler : MonoBehaviour
         ship.currentStar = lastStar;
         ship.move();
         /// Debug.Log($"Muchii create inainte de cicluri: {res.Count}");
+    }
+
+    //Translating starprefab's name to startype
+    static StarType PrefabNameToType(string prefabName)
+    {
+        if (prefabName.EndsWith("(Clone)"))
+        {
+            prefabName = prefabName.Substring(0, prefabName.Length - "(Clone)".Length);
+        }
+        switch (prefabName)
+        {
+            case "redStarPrefab": return StarType.Red;
+            case "yellowStarPrefab": return StarType.Yellow;
+            case "whiteStarPrefab": return StarType.White;
+            case "blueStarPrefab": return StarType.Blue;
+            case "blackHolePrefab": return StarType.BlackHole;
+            default: return StarType.Red;
+        }
+    }
+
+    static int RandomSeed(int a, int b)
+    {
+        return a + b * 50028541;
     }
 
 
@@ -224,12 +248,14 @@ public class PoissonSampler : MonoBehaviour
     }
 
 
+
     GameObject RandomStarPrefab()
     {
         float rand = Random.value;
         for (int i = 0; i < starPrefabs.Length; i++)
         {
             if (rand < starProb[i])
+
             {
                 return starPrefabs[i];
             }
@@ -419,6 +445,7 @@ public class PoissonSampler : MonoBehaviour
             inEdges[(edge.a, edge.b)] = true;
             inEdges[(edge.b, edge.a)] = true;
 
+
             // StarScript starA = mapGO.transform.GetChild(edge.a).GetComponent<StarScript>();
             // StarScript starB = mapGO.transform.GetChild(edge.b).GetComponent<StarScript>();
 
@@ -427,6 +454,7 @@ public class PoissonSampler : MonoBehaviour
             // starB.neighbours.Add(starA);
 
             Debug.Log($"Edge {edge.a} -> {edge.b} instantiated at {lineObj.transform.position}");
+
         }
     }
     void LinkNeighbours()

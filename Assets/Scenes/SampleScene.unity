@@ -1224,7 +1224,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -5400,7 +5400,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1682726766}
   - component: {fileID: 1682726767}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5826,7 +5826,7 @@ GameObject:
   - component: {fileID: 1788876281}
   - component: {fileID: 1788876280}
   - component: {fileID: 1788876279}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: turnAdvance
   m_TagString: Untagged
   m_Icon: {fileID: 0}

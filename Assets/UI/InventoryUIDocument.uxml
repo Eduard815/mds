@@ -13,5 +13,18 @@
             <ui:VisualElement name="LogoEnergy" class="logo" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Prefabs/lighting.png?fileID=-3779678137760624508&amp;guid=71ccf31b4b2797049869646fdeaaceca&amp;type=3#lighting_0&quot;); -unity-background-scale-mode: scale-to-fit;" />
             <ui:VisualElement name="AmountEnergy" class="amount" style="flex-grow: 1;" />
         </ui:VisualElement>
+
+        <ui:VisualElement name="Research" class="resource" style="flex-grow: 1;">
+            <ui:VisualElement name="LogoResearch" class="logo" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Prefabs/research.png?fileID=-6717969260742123045&amp;guid=f884762569a44d24e8613af1317a582b&amp;type=3#research_0&quot;); -unity-background-scale-mode: scale-to-fit;" />
+            <ui:VisualElement name="AmountResearch" class="amount" style="flex-grow: 1;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Ship" class="resource" style="flex-grow: 1;">
+            <ui:VisualElement name="LogoShip" class="logo" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Prefabs/ship.png?fileID=-4360530552843628718&amp;guid=3a89aedef0bf8b74a84a649e4118acf4&amp;type=3#ship_0&quot;); -unity-background-scale-mode: scale-to-fit;" />
+            <ui:VisualElement name="AmountShip" class="amount" style="flex-grow: 1;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Planet" class="resource" style="flex-grow: 1;">
+            <ui:VisualElement name="LogoPlanet" class="logo" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Prefabs/planet.png?fileID=-372395067520658631&amp;guid=30d245f7de33c484b8394664e1cd72d2&amp;type=3#planet_0&quot;); -unity-background-scale-mode: scale-to-fit;" />
+            <ui:VisualElement name="AmountPlanet" class="amount" style="flex-grow: 1;" />
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
