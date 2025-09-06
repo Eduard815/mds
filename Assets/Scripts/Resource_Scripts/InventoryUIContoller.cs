@@ -8,6 +8,8 @@ public class InventoryUIContoller : MonoBehaviour
     public string[] excludedScenes={"Main Menu"};//list with scenes names to hide ui
     public VisualElement ui;
 
+
+    // Singleton pattern to ensure only one instance exists
     void Awake()
     {
         if (instance == null)
@@ -38,6 +40,8 @@ public class InventoryUIContoller : MonoBehaviour
         CheckScene();
     }
 
+
+// Verifica daca scena curenta este in lista scenelor excluse si ascunde/afiseaza UI-ul.
     private void CheckScene()
     {
         string sceneName = SceneManager.GetActiveScene().name;
