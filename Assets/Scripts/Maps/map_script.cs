@@ -10,10 +10,10 @@ public class PoissonSampler : MonoBehaviour
     public GameObject[] starPrefabs;
     public float[] starProb;
     public GameObject edgeLinePrefab;
-    float r = Mathf.Sqrt(2f);
+    float r = 2.5f * Mathf.Sqrt(2f);
     int k = 30;
-    float areaSize = 30f;
-    float smallAreaSize = 8f;
+    float areaSize = 60f;
+    float smallAreaSize = 16f;
     float cellSize;
     int gridWidth, gridHeight;
     int starIndex = 0;

@@ -11,6 +11,9 @@ public class ShipScript : MonoBehaviour
     public GameObject destinationObject;
     public int maxDist = 2;
     public int dist = 2;
+    private Vector3 offset;
+    public float offsetx = 0;
+    public float offsety = 0;
 
     //obiectul unde stationeaza acum nava (obiect tip star/blackhole sau muchie)
     public StarScript currentStar = null;
@@ -18,7 +21,9 @@ public class ShipScript : MonoBehaviour
 
     void Start()
     {
-        
+        offset.x = offsetx;
+        offset.y = offsety;
+        offset.z = 0f;
     }
 
     // Update is called once per frame
@@ -32,7 +37,7 @@ public class ShipScript : MonoBehaviour
         if (dist != 0)
         {
             currentStar = targetStar;
-            transform.position = currentStar.transform.position;
+            transform.position = currentStar.transform.position + offset;
             dist -= 1;
         }
     }

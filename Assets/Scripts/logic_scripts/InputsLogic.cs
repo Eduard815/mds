@@ -20,7 +20,7 @@ public class InputsLogic : MonoBehaviour
     void Update()
     {
         //verifica daca s-a apasat click dreapta
-        if (Input.GetMouseButtonDown(1) && !mouseDown)
+        if (Input.GetMouseButtonDown(1) && !mouseDown && selected != null)
         {
             mouseDown = true;
             var clickedObj = mouseScript.otherObject.gameObject;
