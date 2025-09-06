@@ -25,13 +25,13 @@ public class PoissonSampler : MonoBehaviour
     List<Vector2> points = new List<Vector2>();
     List<Vector2> active = new List<Vector2>();
 
-    
-    List<(int a, int b, float cost)>edges = new List<(int, int, float)>();
+
+    List<(int a, int b, float cost)> edges = new List<(int, int, float)>();
 
 
     /// variabile Kruskal
     int[] T;
-    List<(int a, int b, float cost)>res = new List<(int, int, float)>();
+    List<(int a, int b, float cost)> res = new List<(int, int, float)>();
 
     /// Pentru generare de cicluri
     Dictionary<(int, int), bool> inEdges = new Dictionary<(int, int), bool>();
@@ -164,7 +164,8 @@ public class PoissonSampler : MonoBehaviour
         Kruskal();
         CreateEdges();
         AddCycles();
-        StarScript lastStar = instantiatedStars[instantiatedStars.Count-1].GetComponent<StarScript>();
+        LinkNeighbours();
+        StarScript lastStar = instantiatedStars[instantiatedStars.Count - 1].GetComponent<StarScript>();
         ShipScript ship = FindFirstObjectByType<ShipScript>();
         ship.currentStar = lastStar;
         ship.move();
@@ -192,22 +193,27 @@ public class PoissonSampler : MonoBehaviour
         }
         */
         /// Noul cerc
-        if (star.magnitude >= areaSize/2 || star.magnitude < smallAreaSize/2) return false;
+        if (star.magnitude >= areaSize / 2 || star.magnitude < smallAreaSize / 2) return false;
 
         int iGrid = gridHeight - 2 - Mathf.FloorToInt((areaSize / 2 + star.y) / cellSize);
         int jGrid = Mathf.FloorToInt((areaSize / 2 + star.x) / cellSize);
 
-        if (iGrid < 0 || iGrid >= gridHeight || jGrid < 0 || jGrid >= gridWidth){
+        if (iGrid < 0 || iGrid >= gridHeight || jGrid < 0 || jGrid >= gridWidth)
+        {
             return false;
         }
 
-        for (int i = -1; i <= 1; i++){
+        for (int i = -1; i <= 1; i++)
+        {
             int ii = iGrid + i;
-            for (int j = -1; j <= 1; j++){
+            for (int j = -1; j <= 1; j++)
+            {
                 int jj = jGrid + j;
-                if (ii >= 0 && ii < gridHeight && jj >= 0 && jj < gridWidth && grid[ii, jj] != -1){
+                if (ii >= 0 && ii < gridHeight && jj >= 0 && jj < gridWidth && grid[ii, jj] != -1)
+                {
                     float distance = Mathf.Sqrt(Mathf.Pow(points[grid[ii, jj]].x - star.x, 2) + Mathf.Pow(points[grid[ii, jj]].y - star.y, 2));
-                    if (distance < r){
+                    if (distance < r)
+                    {
                         return false;
                     }
                 }
@@ -218,10 +224,13 @@ public class PoissonSampler : MonoBehaviour
     }
 
 
-    GameObject RandomStarPrefab(){
+    GameObject RandomStarPrefab()
+    {
         float rand = Random.value;
-        for (int i = 0; i < starPrefabs.Length; i++){
-            if (rand < starProb[i]){
+        for (int i = 0; i < starPrefabs.Length; i++)
+        {
+            if (rand < starProb[i])
+            {
                 return starPrefabs[i];
             }
         }
@@ -232,16 +241,21 @@ public class PoissonSampler : MonoBehaviour
 
 
 
-    void AllEdges(){
-        foreach (var star in points){
+    void AllEdges()
+    {
+        foreach (var star in points)
+        {
             int iGrid = gridHeight - 2 - Mathf.FloorToInt((areaSize / 2 + star.y) / cellSize);
             int jGrid = Mathf.FloorToInt((areaSize / 2 + star.x) / cellSize);
 
-            for (int i = -2; i <= 2; i++){
+            for (int i = -2; i <= 2; i++)
+            {
                 int ii = iGrid + i;
-                for (int j = -2; j <= 2; j++){
+                for (int j = -2; j <= 2; j++)
+                {
                     int jj = jGrid + j;
-                    if (ii >= 0 && ii < gridHeight && jj >= 0 && jj < gridWidth && grid[ii, jj] != -1){
+                    if (ii >= 0 && ii < gridHeight && jj >= 0 && jj < gridWidth && grid[ii, jj] != -1)
+                    {
                         float distance = Mathf.Sqrt(Mathf.Pow(points[grid[ii, jj]].x - star.x, 2) + Mathf.Pow(points[grid[ii, jj]].y - star.y, 2));
                         edges.Add((grid[iGrid, jGrid], grid[ii, jj], distance));
                     }
@@ -252,27 +266,34 @@ public class PoissonSampler : MonoBehaviour
 
 
 
-    int Root(int v){
-        if (T[v] == v){
+    int Root(int v)
+    {
+        if (T[v] == v)
+        {
             return v;
         }
         return T[v] = Root(T[v]);
     }
 
-    void Union(int u, int v){
+    void Union(int u, int v)
+    {
         u = Root(u);
         v = Root(v);
-        if (u != v){
+        if (u != v)
+        {
             T[v] = u;
         }
     }
 
-    void Kruskal(){
+    void Kruskal()
+    {
         edges.Sort((e1, e2) => e1.cost.CompareTo(e2.cost));
-        foreach (var (u, v, cost) in edges){
+        foreach (var (u, v, cost) in edges)
+        {
             int a = Root(u);
             int b = Root(v);
-            if (a != b){
+            if (a != b)
+            {
                 Union(a, b);
                 res.Add((u, v, cost));
             }
@@ -280,42 +301,49 @@ public class PoissonSampler : MonoBehaviour
     }
 
 
-    static void Shuffle<T>(List<T>list){
-        for (int i = list.Count-1; i > 0; i--){
+    static void Shuffle<T>(List<T> list)
+    {
+        for (int i = list.Count - 1; i > 0; i--)
+        {
             int j = Random.Range(0, i);
             (list[i], list[j]) = (list[j], list[i]);
         }
     }
 
 
-    void AddCycles(){
+    void AddCycles()
+    {
         GameObject mapGO = GameObject.Find("Map");
 
         int minSelected = (int)points.Count / 4;
         int maxSelected = (int)points.Count / 2;
-        int selected = Random.Range(minSelected, maxSelected+1);
+        int selected = Random.Range(minSelected, maxSelected + 1);
         List<int> starIndexes = Enumerable.Range(0, points.Count).ToList();
         Shuffle(starIndexes);
 
-        for (int ind = 0; ind < selected; ind++){
+        for (int ind = 0; ind < selected; ind++)
+        {
             int edgesToGenerate;
             float rand = Random.value;
-            if (rand < 0.1f){
+            if (rand < 0.1f)
+            {
                 edgesToGenerate = 0;
             }
-            else if (rand < 0.2f){
+            else if (rand < 0.2f)
+            {
                 edgesToGenerate = 1;
             }
             else if (rand < 0.3f) edgesToGenerate = 2;
             else edgesToGenerate = 3;
-            
+
             int currentStarId = starIndexes[ind];
             var star = points[currentStarId];
             int iGrid = gridHeight - 2 - Mathf.FloorToInt((areaSize / 2 + star.y) / cellSize);
             int jGrid = Mathf.FloorToInt((areaSize / 2 + star.x) / cellSize);
-            
+
             int attempts = 0;
-            while (edgesToGenerate > 0 && attempts < 30){
+            while (edgesToGenerate > 0 && attempts < 30)
+            {
                 attempts++;
 
                 /// Iau un punct random din vecinatatea celui curent
@@ -325,33 +353,38 @@ public class PoissonSampler : MonoBehaviour
                 int jj = jGrid + jjRand;
 
                 /// Verific ca e in grid si exista ca si punct
-                if (ii < 0 || ii >= gridHeight || jj < 0 || jj >= gridWidth || grid[ii, jj] == -1){
+                if (ii < 0 || ii >= gridHeight || jj < 0 || jj >= gridWidth || grid[ii, jj] == -1)
+                {
                     continue;
                 }
                 int neighborId = grid[ii, jj];
                 if (neighborId == -1) continue;
 
                 /// Daca exista deja cheia in dictionar
-                if (inEdges.ContainsKey((currentStarId, neighborId)) || inEdges.ContainsKey((neighborId, currentStarId))){
+                if (inEdges.ContainsKey((currentStarId, neighborId)) || inEdges.ContainsKey((neighborId, currentStarId)))
+                {
                     continue;
                 }
-                
-                
+
+
                 /// Bag muchia si o instantiez
                 inEdges[(currentStarId, neighborId)] = true;
                 inEdges[(neighborId, currentStarId)] = true;
-                
+
                 GameObject lineObj = Instantiate(edgeLinePrefab, mapGO.transform);
                 LineRenderer lineRenderer = lineObj.GetComponent<LineRenderer>();
                 lineRenderer.useWorldSpace = true;
 
                 lineRenderer.positionCount = 2;
                 lineRenderer.startWidth = 0.04f;
-                lineRenderer.endWidth =  0.04f;
+                lineRenderer.endWidth = 0.04f;
 
                 lineRenderer.SetPosition(0, new Vector3(points[currentStarId].x, points[currentStarId].y, 0f));
                 lineRenderer.SetPosition(1, new Vector3(points[neighborId].x, points[neighborId].y, 0f));
-                
+
+                // Add the actual edge between the two stars to res list
+                float distance = Vector2.Distance(points[currentStarId], points[neighborId]);
+                res.Add((currentStarId, neighborId, distance));
                 edgesToGenerate--;
             }
         }
@@ -370,14 +403,15 @@ public class PoissonSampler : MonoBehaviour
         GameObject mapGO = GameObject.Find("Map");
 
 
-        foreach (var edge in res){
+        foreach (var edge in res)
+        {
             GameObject lineObj = Instantiate(edgeLinePrefab, mapGO.transform);
             LineRenderer lineRenderer = lineObj.GetComponent<LineRenderer>();
             lineRenderer.useWorldSpace = true;
 
             lineRenderer.positionCount = 2;
             lineRenderer.startWidth = 0.04f;
-            lineRenderer.endWidth =  0.04f;
+            lineRenderer.endWidth = 0.04f;
 
             lineRenderer.SetPosition(0, new Vector3(points[edge.a].x, points[edge.a].y, 0f));
             lineRenderer.SetPosition(1, new Vector3(points[edge.b].x, points[edge.b].y, 0f));
@@ -385,14 +419,28 @@ public class PoissonSampler : MonoBehaviour
             inEdges[(edge.a, edge.b)] = true;
             inEdges[(edge.b, edge.a)] = true;
 
+            // StarScript starA = mapGO.transform.GetChild(edge.a).GetComponent<StarScript>();
+            // StarScript starB = mapGO.transform.GetChild(edge.b).GetComponent<StarScript>();
+
+            // starA.neighbours.Add(starB);
+
+            // starB.neighbours.Add(starA);
+
+            Debug.Log($"Edge {edge.a} -> {edge.b} instantiated at {lineObj.transform.position}");
+        }
+    }
+    void LinkNeighbours()
+    {
+        GameObject mapGO = GameObject.Find("Map");
+
+        foreach (var edge in res)
+        {
             StarScript starA = mapGO.transform.GetChild(edge.a).GetComponent<StarScript>();
             StarScript starB = mapGO.transform.GetChild(edge.b).GetComponent<StarScript>();
 
             starA.neighbours.Add(starB);
-            
-            starB.neighbours.Add(starA);
 
-            Debug.Log($"Edge {edge.a} -> {edge.b} instantiated at {lineObj.transform.position}");
+            starB.neighbours.Add(starA);
         }
     }
 

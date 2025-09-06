@@ -29,7 +29,10 @@ public class Mouse : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
+        if (otherObject == other)
+        {
+            otherObject = null;
+        }
         Debug.Log($"{other.name} exited the cursor area!");
-        otherObject = null;
     }
 }
