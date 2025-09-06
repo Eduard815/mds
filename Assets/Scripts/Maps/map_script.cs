@@ -167,7 +167,7 @@ public class PoissonSampler : MonoBehaviour
         LinkNeighbours();
         StarScript lastStar = instantiatedStars[instantiatedStars.Count - 1].GetComponent<StarScript>();
         ShipScript ship = FindFirstObjectByType<ShipScript>();
-        ship.currentStar = lastStar;
+        ship.targetStar = lastStar;
         ship.move();
         /// Debug.Log($"Muchii create inainte de cicluri: {res.Count}");
     }
