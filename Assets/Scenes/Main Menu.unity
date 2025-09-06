@@ -448,7 +448,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Insert Game Name
+  m_text: Galacti-Quest
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2c7c2a610cb829749a0acb44c7344e6c, type: 2}
   m_sharedMaterial: {fileID: -7841439715846939357, guid: 2c7c2a610cb829749a0acb44c7344e6c, type: 2}
@@ -3055,7 +3055,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -30.552887}
+  m_AnchoredPosition: {x: 0, y: -30.552917}
   m_SizeDelta: {x: -1500, y: -438.893}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1763550276
