@@ -134,16 +134,26 @@ public class PoissonSampler : MonoBehaviour
         /// Debug pentru prima stea
         /// Vector2 star = points[0];
         /// GameObject go = Instantiate(starPrefab, new Vector3(star.x, star.y, 0f), Quaternion.identity, mapGO.transform);
-
-        foreach (Vector2 star in points)
+        
+        //modified in order to add starType, starSeed update
+        for (int i = 0; i < points.Count; i++)
         {
             /// Instantiate(starPrefab, star, Quaternion.identity);
-            idIndex = idIndex + 1;
+            Vector2 star = points[i];
             var starPrefab = RandomStarPrefab();
 
             GameObject go = Instantiate(starPrefab, new Vector3(star.x, star.y, 0f), Quaternion.identity, mapGO.transform);
             StarScript starComp = go.GetComponent<StarScript>();
-            starComp.id = idIndex;
+
+            starComp.id = i;
+            if (starPrefab.name.Contains("red")) starComp.type = StarType.Red;
+            else if (starPrefab.name.Contains("yellow")) starComp.type = StarType.Yellow;
+            else if (starPrefab.name.Contains("white")) starComp.type = StarType.White;
+            else if (starPrefab.name.Contains("blue")) starComp.type = StarType.Blue;
+            else if (starPrefab.name.Contains("blackhole")) starComp.type = StarType.BlackHole;
+
+            starComp.seed = SeedGeneration.GenSeed(SaveGalaxy.Instance.galaxySeed, i);
+
             instantiatedStars.Add(go);
             /// go.transform.position = new Vector3(star.x, star.y, 0f);
         }

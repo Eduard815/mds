@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 
 //scriptul va fi atasat fiecerei stele/blackhole
@@ -12,11 +14,16 @@ public class StarScript : MonoBehaviour
     //id->indexul punctului corespunzator acestui obiect in lista din map_script
     public int id;
     public List<StarScript> neighbours = new();
-    public int type;
+    public StarType type;
     public string owner = "none";
     //ce cantitate de resurse contine obiectul
     public int gas;
     public int metal;
+
+    public int seed;
+    float lastClickTime = 0f;
+    float doubleClickWindow = 0.3f;
+
     void Start()
     {
         if (type != 0)
@@ -42,6 +49,7 @@ public class StarScript : MonoBehaviour
             }
         }
     }
+
 
     void Update()
     {

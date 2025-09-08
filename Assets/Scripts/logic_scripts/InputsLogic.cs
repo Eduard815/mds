@@ -1,5 +1,7 @@
 using UnityEngine;
 using TMPro; //pentru texte
+using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class InputsLogic : MonoBehaviour
 {
@@ -11,6 +13,10 @@ public class InputsLogic : MonoBehaviour
     public int turn;
     private bool mouseDown = false;
     private GameObject selected = null;
+
+    [SerializeField] private float doubleClickTime = 0.5f;
+    private StarScript lastStarClicked;
+    private float lastClickTime;
     void Start()
     {
         turn = 1;
@@ -83,6 +89,19 @@ public class InputsLogic : MonoBehaviour
                     Debug.Log("You selected " + selected.name);
                     Debug.Log("id " + star.id);
                     Debug.Log("neighbours " + star.neighbours[0]);
+
+                    float now = Time.time;
+                    if (lastStarClicked == star && (now - lastClickTime) <= doubleClickTime)
+                    {
+                        SaveGalaxy.Instance.selectedStarId = star.id;
+                        SaveGalaxy.Instance.selectedStarSeed = star.seed;
+                        SaveGalaxy.Instance.selectedStarType = star.type;
+                        SceneManager.LoadScene("SolarSystem");
+                        return;
+                    }
+
+                    lastStarClicked = star;
+                    lastClickTime = now;
                 }
                     
                 }
