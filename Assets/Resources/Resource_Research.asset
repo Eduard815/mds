@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ResourceName>k__BackingField: Research
   <Icon>k__BackingField: {fileID: -6717969260742123045, guid: f884762569a44d24e8613af1317a582b, type: 3}
-  <Description>k__BackingField: 
+  <Description>k__BackingField: Research Power is determined by the number of laboratories
+    owned by your empire
