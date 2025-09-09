@@ -27,6 +27,27 @@ public class RuntimeUI : MonoBehaviour
         // Get references to the UI labels
         root = UIDocument.rootVisualElement;
 
+        // At the awake moment, we use the functions declared in Inventory.cs to set the initial amounts, gains, and limits for the resources
+        if (Inv != null){
+            Inv.SetInitialAmount(metalResource, 10);
+            Inv.SetInitialGain(metalResource, 3);
+
+            Inv.SetInitialAmount(gasResource, 10);
+            Inv.SetInitialGain(gasResource, 3);
+            
+            Inv.SetInitialAmount(energyResource, 10);
+            Inv.SetInitialGain(energyResource, 5);
+
+            Inv.SetInitialAmount(researchResource, 1);
+            Inv.SetInitialGain(researchResource, 1);
+
+            Inv.SetInitialAmount(shipResource, 1);
+            Inv.SetInitialLimit(shipResource, 5);
+
+            Inv.SetInitialAmount(planetResource, 1);
+        }
+
+
         metalVE = root.Q<VisualElement>("Metal");
         gasVE = root.Q<VisualElement>("Gas");
         energyVE = root.Q<VisualElement>("Energy");
