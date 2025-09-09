@@ -78,3 +78,29 @@
     justify-content: center;
     align-items: center;
 }
+
+
+.tooltip {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    padding: 8px 10px;
+    background-color: rgba(15, 102, 111, 1) !important;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 34, 46, 0.9) !important;
+    max-width: 500px;
+}
+
+.tooltip-title {
+    color: rgba(255, 255, 255, 1);
+    font-size: 14px;
+    -unity-font-style: bold;
+    margin-bottom: 4px;
+    white-space: normal;
+}
+
+.tooltip-body {
+    color: rgba(255, 255, 255, 1);
+    font-size: 13px;
+    white-space: normal;
+}

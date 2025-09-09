@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ResourceName>k__BackingField: Ship
   <Icon>k__BackingField: {fileID: -4360530552843628718, guid: 3a89aedef0bf8b74a84a649e4118acf4, type: 3}
-  <Description>k__BackingField: 
+  <Description>k__BackingField: The number of ships in your fleet. The more stars
+    you own, the greater the ship limit will be

@@ -6,6 +6,7 @@ public class cameraScript : MonoBehaviour
     public float zoomSpeed = 5f;
     public float minZoom = 2f;
     public float maxZoom = 10f;
+    public float areaSize = 80f;
 
     private Camera cam;
     void Start()
@@ -34,5 +35,20 @@ public class cameraScript : MonoBehaviour
 
         // Apply movement
         transform.Translate(movement, Space.World);
+
+
+        // Limiting camera movement to the map's borders
+        float verticalLimit = cam.orthographicSize;
+        float horizontalLimit = verticalLimit * cam.aspect;
+
+        float minX = -areaSize / 2 + horizontalLimit;
+        float maxX = areaSize / 2 - horizontalLimit;
+        float minY = -areaSize / 2 + verticalLimit + 1;
+        float maxY = areaSize / 2 - verticalLimit;
+
+        Vector3 pos = transform.position;
+        pos.x = Mathf.Clamp(pos.x, minX, maxX);
+        pos.y = Mathf.Clamp(pos.y, minY, maxY);
+        transform.position = pos;
     }
 }

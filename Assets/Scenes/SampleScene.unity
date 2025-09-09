@@ -1357,7 +1357,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 16.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1401,10 +1401,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 501ff2e80b5ea0c4f96994b831318e94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zoomSpeed: 5
+  zoomSpeed: 10
   minZoom: 2
-  maxZoom: 10
-  speed: 5
+  maxZoom: 16.5
+  speed: 10
 --- !u!1 &549167585
 GameObject:
   m_ObjectHideFlags: 0
@@ -6304,7 +6304,10 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 729d64fac937ac94fa696b03bc3d4617, type: 2}
     - {fileID: 11400000, guid: 0cd4519f954f92843a2f8ec41ec18b49, type: 2}
     - {fileID: 11400000, guid: e85afc1dda7f7ec438cff3af26937e32, type: 2}
-    m_values: 000000000000000000000000
+    - {fileID: 11400000, guid: 05cfffe15996d5f41b400e1cce4ab90b, type: 2}
+    - {fileID: 11400000, guid: a7796f6fffbee73429f01b25f371e62b, type: 2}
+    - {fileID: 11400000, guid: 3a04a372095c23846bde39c829cec480, type: 2}
+    m_values: 000000000000000000000000000000000000000000000000
   <Gains>k__BackingField:
     m_keys: []
     m_values: 
@@ -6344,9 +6347,9 @@ MonoBehaviour:
   metalResource: {fileID: 11400000, guid: e85afc1dda7f7ec438cff3af26937e32, type: 2}
   gasResource: {fileID: 11400000, guid: 0cd4519f954f92843a2f8ec41ec18b49, type: 2}
   energyResource: {fileID: 11400000, guid: 729d64fac937ac94fa696b03bc3d4617, type: 2}
-  researchResource: {fileID: 0}
-  shipResource: {fileID: 0}
-  planetResource: {fileID: 0}
+  researchResource: {fileID: 11400000, guid: 05cfffe15996d5f41b400e1cce4ab90b, type: 2}
+  shipResource: {fileID: 11400000, guid: a7796f6fffbee73429f01b25f371e62b, type: 2}
+  planetResource: {fileID: 11400000, guid: 3a04a372095c23846bde39c829cec480, type: 2}
 --- !u!1 &2004799298
 GameObject:
   m_ObjectHideFlags: 0
