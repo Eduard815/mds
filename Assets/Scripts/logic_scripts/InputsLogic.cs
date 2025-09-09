@@ -90,6 +90,7 @@ public class InputsLogic : MonoBehaviour
                     Debug.Log("id " + star.id);
                     Debug.Log("neighbours " + star.neighbours[0]);
 
+                    //calculates the time between clicks to determine whether there was a valid double click
                     float now = Time.time;
                     if (lastStarClicked == star && (now - lastClickTime) <= doubleClickTime)
                     {

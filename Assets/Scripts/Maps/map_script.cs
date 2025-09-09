@@ -150,7 +150,7 @@ public class PoissonSampler : MonoBehaviour
             else if (starPrefab.name.Contains("yellow")) starComp.type = StarType.Yellow;
             else if (starPrefab.name.Contains("white")) starComp.type = StarType.White;
             else if (starPrefab.name.Contains("blue")) starComp.type = StarType.Blue;
-            else if (starPrefab.name.Contains("blackhole")) starComp.type = StarType.BlackHole;
+            else if (starPrefab.name.Contains("blackHole")) starComp.type = StarType.BlackHole;
 
             starComp.seed = SeedGeneration.GenSeed(SaveGalaxy.Instance.galaxySeed, i);
 
