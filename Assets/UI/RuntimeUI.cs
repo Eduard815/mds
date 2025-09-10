@@ -26,15 +26,17 @@ public class RuntimeUI : MonoBehaviour
     {
         // Get references to the UI labels
         root = UIDocument.rootVisualElement;
+        Inv = FindObjectOfType<Inventory>();
 
         // At the awake moment, we use the functions declared in Inventory.cs to set the initial amounts, gains, and limits for the resources
-        if (Inv != null){
+        if (Inv != null)
+        {
             Inv.SetInitialAmount(metalResource, 10);
             Inv.SetInitialGain(metalResource, 3);
 
             Inv.SetInitialAmount(gasResource, 10);
             Inv.SetInitialGain(gasResource, 3);
-            
+
             Inv.SetInitialAmount(energyResource, 10);
             Inv.SetInitialGain(energyResource, 5);
 
@@ -151,6 +153,7 @@ public class RuntimeUI : MonoBehaviour
 
     private void Start()
     {
+        
         UpdateUI();
     }
 
