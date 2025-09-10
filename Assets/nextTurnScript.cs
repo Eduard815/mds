@@ -6,7 +6,11 @@ public class nextTurnScript : MonoBehaviour
     
     bool nextTurnBtn = false;
     bool nextTurn = false;
+
+    [SerializeField] private Inventory inventory;
+    [SerializeField] private RuntimeUI runtimeUI;
     public Transform shipsPointer;
+
     void Start()
     {
         
@@ -33,12 +37,22 @@ public class nextTurnScript : MonoBehaviour
             nextTurnBtn = false;
         }
         if (nextTurn)
+        {
+            nextTurn = false;
+            foreach (ShipScript ship in FindObjectsOfType<ShipScript>())
             {
-                foreach (ShipScript ship in FindObjectsOfType<ShipScript>())
-                {
-                    ship.dist = ship.maxDist;
-                }
-                nextTurn = false;
+                ship.dist = ship.maxDist;
             }
+
+            /// Updating the inventory by calling the ApplyTurn function right after ending the turn
+            if (inventory != null){
+                inventory.ApplyTurn();
+            }
+
+            /// Refreshing the UI to get the modified values from the inventory of the next turn
+            if (runtimeUI != null){
+                runtimeUI.RefreshUI();
+            }
+        }
     }
 }

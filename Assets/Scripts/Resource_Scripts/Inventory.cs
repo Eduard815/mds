@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Inventory : MonoBehaviour
 {
@@ -68,16 +69,57 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    /// Adding the resources to the current amount
     public int AddResource(Resource resource, int amount)
     {
-        if (Resources.TryGetValue(resource, out int amount2))
-        {
-            return Resources[resource] += amount;
+        int currentAmount = GetResourceAmount(resource);
+        int lim = GetResourceLimit(resource);
+        int newAmount = currentAmount + amount;
+        if (lim > 0){
+            newAmount = Mathf.Min(lim, newAmount);
         }
-        else
-        {
-            Resources.Add(resource, amount);
-            return amount;
+        Resources[resource] = newAmount;
+        return newAmount;
+    }
+
+
+    /// Passing to the next turn
+    public void ApplyTurn(){
+        Debug.Log("!!!!!!!!!!!!! All resources updated !!!!!!!!!!!!!");
+        var keys = GetAllTrackedResources();
+        foreach (var resource in keys){
+            int gain = GetResourceGain(resource);
+            int currentAmount = GetResourceAmount(resource);
+            int lim = GetResourceLimit(resource);
+            int newAmount = currentAmount + gain;
+            if (lim > 0){
+                newAmount = Mathf.Min(newAmount, lim);
+            }
+            Resources[resource] = newAmount;
+
+            Debug.Log($"Resource {resource.ResourceName} | Current: {currentAmount} | Gain: {gain} | Limit: {lim} | New Amount: {newAmount}");
         }
+    }
+
+
+    private List<Resource>GetAllTrackedResources(){
+        var set = new HashSet<Resource>();
+        foreach (var r in Resources.Keys){
+            if (r != null){
+                set.Add(r);
+            }
+        }
+        foreach (var r in Gains.Keys){
+            if (r != null){
+                set.Add(r);
+            }
+        }
+        foreach (var r in Limit.Keys){
+            if (r != null){
+                set.Add(r);
+            }
+        }
+
+        return new List<Resource>(set);
     }
 }
