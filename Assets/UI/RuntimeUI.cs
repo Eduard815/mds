@@ -183,6 +183,11 @@ public class RuntimeUI : MonoBehaviour
         return;
     }
 
+    /// Calling UpdateUI to update the UI
+    public void RefreshUI(){
+        UpdateUI();
+    }
+
 
     private void ShowTooltip(string title, string body, Vector2 panelPosition){
         tooltipTitle.text = title;
