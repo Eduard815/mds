@@ -21,7 +21,7 @@ public class InventoryUIContoller : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        ui = GetComponent<UIDocument>().rootVisualElement;
+        ui = GetComponentInChildren<UIDocument>().rootVisualElement;
     }
 
     void Start()
