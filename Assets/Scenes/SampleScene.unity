@@ -5660,7 +5660,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1743467499}
   - component: {fileID: 1743467500}
-  - component: {fileID: 1743467501}
   m_Layer: 0
   m_Name: InventoryUIDocument
   m_TagString: Untagged
@@ -5702,20 +5701,6 @@ MonoBehaviour:
   m_WorldSpaceSizeMode: 1
   m_WorldSpaceWidth: 1920
   m_WorldSpaceHeight: 1080
---- !u!114 &1743467501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1743467498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3afb282b3bb7b4a4aa6d2c7e5b5d71a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  excludedScenes:
-  - Main Menu
 --- !u!1 &1767661358
 GameObject:
   m_ObjectHideFlags: 0
@@ -6269,6 +6254,7 @@ GameObject:
   - component: {fileID: 1965403593}
   - component: {fileID: 1965403591}
   - component: {fileID: 1965403594}
+  - component: {fileID: 1965403595}
   m_Layer: 0
   m_Name: InventoryUI
   m_TagString: Untagged
@@ -6333,6 +6319,20 @@ MonoBehaviour:
   researchResource: {fileID: 11400000, guid: 05cfffe15996d5f41b400e1cce4ab90b, type: 2}
   shipResource: {fileID: 11400000, guid: a7796f6fffbee73429f01b25f371e62b, type: 2}
   planetResource: {fileID: 11400000, guid: 3a04a372095c23846bde39c829cec480, type: 2}
+--- !u!114 &1965403595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1965403590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3afb282b3bb7b4a4aa6d2c7e5b5d71a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  excludedScenes:
+  - Main Menu
 --- !u!1 &2004799298
 GameObject:
   m_ObjectHideFlags: 0

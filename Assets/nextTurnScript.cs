@@ -13,7 +13,8 @@ public class nextTurnScript : MonoBehaviour
 
     void Start()
     {
-        
+        inventory = FindObjectOfType<Inventory>();
+        runtimeUI = FindObjectOfType<RuntimeUI>();
     }
 
     public void onNextTurnButton(){
