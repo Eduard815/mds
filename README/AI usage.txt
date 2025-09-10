@@ -1,0 +1,41 @@
+AI models were mainly used for these purposes:
+
+Star system (galaxy generation)
+Analyzing complex scripts (especially written by others) in order to modify them and use them: explained how it:
+generates stars in a donut-shaped area with Poisson-disk sampling, connects them with edges (Kruskal MST + cycles).
+Adding a Star script to each star prefab to store id, resources, and a list of neighbors.
+Debugging why all stars had the same ID and fixing by assigning IDs at instantiation.
+
+UI
+Explaining how to create a UI Panel in Unity and position it.
+Showing how to make the panel display star info (StarInfoUI with TMP_Text).
+Updating UI dynamically from InputsLogic (e.g., show selected star’s name/resources).
+
+C# and Unity essentials
+Input & Interaction
+Managing inputs (clicks, key presses etc.).
+Managing in-game object interactions and logic (detecting pressed objects).
+Inter-script communication and interaction (public variables, FindObjectOfType, Inspector).
+Building the logic:
+First click selects a star/ship.
+Second click (on another object) performs an action.
+Understanding how to reference objects that are instantiated at runtime.
+Converting values for UI display (int → string with .ToString(), string interpolation).
+Using List<T> (.Add, .Contains, .Count).
+Searching a list for a star by position (Vector3.Distance with tolerance).
+Iterating through all ships in the scene (FindObjectsOfType<Ship>(), GameObject.FindGameObjectsWithTag).
+
+Models used:
+ChatGPT-5 (code)
+Glaude sonet (code)
+Dall-E (image generation)
+Diffusion (audio generation)
+
+Techniques used:
+The most significant technique used for prompting was COT of various shapes. It greatly improved the quality of the results.
+The models used for code generation were also provided with as many script files as possible for context. Also, the files they were provided with were updated periodically (when necessary).
+
+Conclusions about AI:
+Models help the production go faster, not necessarily smoother. 
+They are great for understanding code that got too complex and vast, or that was written by someone else and seems ambiguous.
+Proper techniques make the results significantly better. Through using proper prompting we got results that are up to date with the latest version of Unity, and also responses that better take context into account.

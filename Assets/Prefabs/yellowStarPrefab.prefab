@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5804740652006746726}
   - component: {fileID: 4807796628149708147}
   - component: {fileID: -1686892947574346733}
+  - component: {fileID: 4916412290448513710}
   m_Layer: 0
   m_Name: yellowStarPrefab
   m_TagString: Untagged
@@ -152,3 +153,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &4916412290448513710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8649690633124088754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3708bd35b790d93489b5c5af9ada509d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
+  gas: 0
+  metal: 0

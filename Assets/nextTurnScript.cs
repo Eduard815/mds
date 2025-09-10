@@ -4,41 +4,56 @@ public class nextTurnScript : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     
+    bool nextTurnBtn = false;
     bool nextTurn = false;
+
+    [SerializeField] private Inventory inventory;
+    [SerializeField] private RuntimeUI runtimeUI;
     public Transform shipsPointer;
+
     void Start()
     {
-        
+        inventory = FindObjectOfType<Inventory>();
+        runtimeUI = FindObjectOfType<RuntimeUI>();
+    }
+
+    public void onNextTurnButton(){
+        nextTurn = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return)){
-            if(!nextTurn){
+
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            if (!nextTurnBtn)
+            {
                 nextTurn = true;
+                nextTurnBtn = true;
             }
         }
-        if(nextTurn){
-            foreach(Transform child in shipsPointer){
-                ShipScript ship = child.GetComponent<ShipScript>();
-                if(ship.isMoving){
-                    Vector2 nextPos;
-                    Vector2 currentPosition = new Vector2(child.position.x, child.position.y);
-                    Vector2 direction = ship.destination - currentPosition;
-                    float distanceToTarget = direction.magnitude;
-                    if(distanceToTarget <= ship.speed){
-                        nextPos = ship.destination;
-                    }
-                    else{
-                        Vector2 step = direction.normalized*ship.speed;
-                        nextPos = currentPosition + step;
-                    }
-                    child.position = new Vector3(nextPos.x, nextPos.y, child.position.z);
-                }
-                Debug.Log(child.name);
-            }
+        else if (nextTurnBtn)
+        {
+            nextTurnBtn = false;
+        }
+        if (nextTurn)
+        {
             nextTurn = false;
+            foreach (ShipScript ship in FindObjectsOfType<ShipScript>())
+            {
+                ship.dist = ship.maxDist;
+            }
+
+            /// Updating the inventory by calling the ApplyTurn function right after ending the turn
+            if (inventory != null){
+                inventory.ApplyTurn();
+            }
+
+            /// Refreshing the UI to get the modified values from the inventory of the next turn
+            if (runtimeUI != null){
+                runtimeUI.RefreshUI();
+            }
         }
     }
 }

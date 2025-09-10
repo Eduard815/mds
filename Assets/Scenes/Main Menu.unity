@@ -448,7 +448,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Insert Game Name
+  m_text: Galacti-Quest
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2c7c2a610cb829749a0acb44c7344e6c, type: 2}
   m_sharedMaterial: {fileID: -7841439715846939357, guid: 2c7c2a610cb829749a0acb44c7344e6c, type: 2}
